@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikasi Perhitungan Nilai</title>
+</head>
+<body>
+    <h1>Aplikasi Perhitungan Nilai</h1>
+    <form id="nilaiForm">
+        <label for="presensi">Presensi:</label>
+        <input type="number" id="presensi" name="presensi" value="0" min="0" max="100">
+        <br><br>
+        <label for="tugas">Nilai Tugas:</label>
+        <input type="number" id="tugas" name="tugas" value="0" min="0" max="100">
+        <br><br>
+        <label for="uts">Nilai UTS:</label>
+        <input type="number" id="uts" name="uts" value="0" min="0" max="100">
+        <br><br>
+        <label for="uas">Nilai UAS:</label>
+        <input type="number" id="uas" name="uas" value="0" min="0" max="100">
+        <br><br>
+        <button type="button" onclick="hitungNilai()">Hitung</button>
+        <button type="reset">Reset</button>
+    </form>
+    <div id="hasil">
+        <h2>Hasil Perhitungan</h2>
+        <p>Nilai Akhir: <span id="nilaiAkhir"></span></p>
+        <p>Huruf: <span id="hurufNilai"></span></p>
+    </div>
+    <script>
+        function hitungNilai() {
+            var presensi = parseFloat(document.getElementById("presensi").value);
+            var tugas = parseFloat(document.getElementById("tugas").value);
+            var uts = parseFloat(document.getElementById("uts").value);
+            var uas = parseFloat(document.getElementById("uas").value);
+            var nilaiAkhir = (presensi * 0.1) + (tugas * 0.2) + (uts * 0.3) + (uas * 0.4);
+            var hurufNilai;
+            if (nilaiAkhir > 80) {
+                hurufNilai = "A";
+            } else if (nilaiAkhir > 75 && nilaiAkhir <= 80) {
+                hurufNilai = "B+";
+            } else if (nilaiAkhir > 70 && nilaiAkhir <= 75) {
+                hurufNilai = "B";
+            } else if (nilaiAkhir > 65 && nilaiAkhir <= 70) {
+                hurufNilai = "B-";
+            } else if (nilaiAkhir > 60 && nilaiAkhir <= 65) {
+                hurufNilai = "C+";
+            } else if (nilaiAkhir > 55 && nilaiAkhir <= 60) {
+                hurufNilai = "C";
+            } else if (nilaiAkhir > 50 && nilaiAkhir <= 55) {
+                hurufNilai = "C-";
+            } else if (nilaiAkhir > 30 && nilaiAkhir <= 50) {
+                hurufNilai = "D";
+            } else {
+                hurufNilai = "E";
+            }
+            document.getElementById("nilaiAkhir").innerHTML = nilaiAkhir.toFixed(2);
+            document.getElementById("hurufNilai").innerHTML = hurufNilai;
+        }
+    </script>
+</body>
+</html>
